@@ -468,7 +468,7 @@ footer ul li a:hover{color:#fff;}
               </optgroup>
               <optgroup label="Custom Prints">
                 <option>Scratch Cards</option><option>Pocket Mirror</option><option>25mm Button Pins</option>
-                <option>32mm Button Pins</option><option>58mm Button Pins</option><option>Badge Pen</option><option>Badge Keychain</option>
+                <option>32mm Button Pins</option><option>58mm Button Pins</option><option>Badge Keychain</option>
                 <option>Random Stickers</option><option>Laminated Menu (A4)</option><option>Claim Stub (A4)</option>
                 <option>30ml Trapezoid Bottle</option><option>2 in 1 Keychain</option><option>Vinyl Decal Stickers 1.5" x 4"</option>
                 <option>Personalized Ref Magnet</option><option>Backing</option>
@@ -484,6 +484,10 @@ footer ul li a:hover{color:#fff;}
               <option>GCash</option><option>PayMaya</option><option>Maribank</option><option>Bank Transfer</option>
             </select>
           </div>
+          <div class="field full">
+          <label>Scan to Pay (GCash / PayMaya)</label>
+          <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
+      </div>
           <div class="field"><label>Preferred Pickup / Delivery</label>
             <select><option>Pickup</option><option>Delivery (within Danao City)</option><option>Delivery (outside Danao City)</option></select>
           </div>
@@ -669,7 +673,7 @@ footer ul li a:hover{color:#fff;}
         <p class="eyebrow">Contact Us</p>
         <h2>Let's talk about your order</h2>
         <div class="row"><div class="ic">📍</div><div><strong>Service Area</strong><br><span style="color:var(--espresso-soft);font-size:.9rem;">Danao City, Cebu, Philippines — pickup &amp; island-wide delivery</span></div></div>
-        <div class="row"><div class="ic">🕐</div><div><strong>Business Hours</strong><br><span style="color:var(--espresso-soft);font-size:.9rem;">Monday – Saturday, 9AM – 6PM</span></div></div>
+        <div class="row"><div class="ic">🕐</div><div><strong>Business Hours</strong><br><span style="color:var(--espresso-soft);font-size:.9rem;">Monday – Sunday, 8AM – 10PM</span></div></div>
         <div class="row"><div class="ic">✉</div><div><strong>Email</strong><br><a href="mailto:nisecreations24@gmail.com" style="color:var(--espresso-soft);font-size:.9rem;">nisecreations24@gmail.com</a></div></div>
         <div class="row"><div class="ic">💬</div><div><strong>Messenger</strong><br><a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--espresso-soft);font-size:.9rem;">Fastest way to reach us for quotes</a></div></div>
         <div style="display:flex;gap:12px;margin:18px 0;flex-wrap:wrap;">
@@ -760,67 +764,66 @@ const products = [
   {name:"Bubble Head", cat:["Christening","Birthday"], desc:"Personalized bubble head souvenir for christening guests.", price:"₱ 25", img:"bubble-head-ref-magnet 2.jpg"},
   {name:"ATM Size", cat:["Christening","Birthday"], desc:"Compact ATM-size personalized giveaway.", price:"₱ 25", img:"atm-size-ref-magnet.jpg"},
   {name:"Regular Candle", cat:"Christening", desc:"Hand-poured regular christening candle.", price:"₱ 22", img:"regular-candle.png"},
-  {name:"Candle w/ Drip Holder", cat:"Christening", desc:"Christening candle set with a drip holder.", price:"₱ 22", img:"https://images.unsplash.com/photo-1602874801007-bd36c67f9b98?q=80&w=500&auto=format&fit=crop"},
-  {name:"Big/Mother Candle", cat:"Christening", desc:"The main mother candle for the christening ceremony.", price:"₱ 180", img:"https://images.unsplash.com/photo-1602874801007-bd36c67f9b98?q=80&w=500&auto=format&fit=crop"},
-  {name:"Acrylic Keychain", cat:"Christening", desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
-  {name:"30ml Hand Sanitizer", cat:"Christening", desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
-  {name:"Rosary Card", cat:"Christening", desc:"Keepsake rosary card for baptism guests.", price:"₱ 25", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500&auto=format&fit=crop"},
-  {name:"Floating Frame w/out Stand", cat:"Christening", desc:"Elegant floating photo frame keepsake, no stand included.", price:"₱ 25", img:"https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=500&auto=format&fit=crop"},
+  {name:"Candle w/ Drip Holder", cat:"Christening", desc:"Christening candle set with a drip holder.", price:"₱ 22", img:"Candle-with-drip-holder.jpg"},
+  {name:"Big/Mother Candle", cat:"Christening", desc:"The main mother candle for the christening ceremony.", price:"₱ 180", img:"Mother-candle.jpg"},
+  {name:"Acrylic Keychain", cat:["Christening","Birthday"], desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"Acrylic-keychain.jpg"},
+  {name:"30ml Hand Sanitizer", cat:["Christening","Birthday"], desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"30ml-hand-sanitizer.jpg"},
+  {name:"Rosary Card", cat:"Christening", desc:"Keepsake rosary card for baptism guests.", price:"₱ 25", img:"Rosary-card.jpg"},
+  {name:"Floating Frame w/out Stand", cat:"Christening", desc:"Elegant floating photo frame keepsake, no stand included.", price:"₱ 25", img:"Floating-frame-without-stand.jpg"},
+  {name:"Instax Mini Inspired Ref Magnet", cat:"Christening", desc:"Compact personalized pocket mirror.", price:"₱ 50", img:"Instax-mini-inspired-ref-magnet.jpg"},
 
-  {name:"Number Cut Out", cat:"Birthday", desc:"Custom number cut-out for milestone birthdays.", price:"₱ 35", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
-  {name:"Number Frame", cat:"Birthday", desc:"Decorative number frame photo prop.", price:"₱ 35", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
-  {name:"Number Cut Out w/ Drawstring", cat:"Birthday", desc:"Number cut-out with a drawstring bag included.", price:"₱ 40", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
-  {name:"Acrylic Keychain", cat:"Birthday", desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
-  {name:"5ml Essential Oil", cat:"Birthday", desc:"Personalized 5ml essential oil giveaway.", price:"₱ 50", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
-  {name:"2ml Spray Alcohol", cat:"Birthday", desc:"Personalized 2ml spray alcohol giveaway.", price:"₱ 25", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
-  {name:"Arc Gable Box", cat:"Birthday", desc:"Arc-style gable favor box for party treats.", price:"₱ 25", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop"},
-  {name:"Medium Gable Box", cat:"Birthday", desc:"Medium-sized personalized gable favor box.", price:"₱ 20", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop"},
-  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop"},
-  {name:"Portrait Loot Bags", cat:"Birthday", desc:"Portrait-orientation themed loot bags.", price:"₱ 25", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop"},
-  {name:"Landscape Loot Bags", cat:"Birthday", desc:"Landscape-orientation themed loot bags.", price:"₱ 25", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop"},
-  {name:"Party Hats", cat:"Birthday", desc:"Custom printed party hats to match your motif.", price:"₱ 18", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
-  {name:"30ml Hand Sanitizer", cat:"Birthday", desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
 
-  {name:"Pull-Me Invitation Card", cat:"Invitation", desc:"Interactive pull-me style invitation card.", price:"₱ 30", img:"https://images.unsplash.com/photo-1607344645866-009c320c5ab0?q=80&w=500&auto=format&fit=crop"},
+  {name:"Number Cut Out", cat:"Birthday", desc:"Custom number cut-out for milestone birthdays.", price:"₱ 35", img:"Number-cutout-ref-magnet.jpg"},
+  {name:"Number Cut Out w/ Drawstring", cat:"Birthday", desc:"Number cut-out with a drawstring bag included.", price:"₱ 40", img:"Number-cutout-set.jpg"},
+  {name:"5ml Essential Oil", cat:"Birthday", desc:"Personalized 5ml essential oil giveaway.", price:"₱ 50", img:"5ml-relaxing-oil.jpg"},
+  {name:"2ml Spray Alcohol", cat:"Birthday", desc:"Personalized 2ml spray alcohol giveaway.", price:"₱ 25", img:"2ml-alcohol-spray.jpg"},
+  {name:"Arc Gable Box", cat:"Birthday", desc:"Arc-style gable favor box for party treats.", price:"₱ 25", img:"Arc-gable-box.jpg"},
+  {name:"Medium Gable Box", cat:"Birthday", desc:"Medium-sized personalized gable favor box.", price:"₱ 20", img:"Medium-gable-box.jpg"},
+  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"Large-gale-box.jpg"},
+  {name:"Portrait Loot Bags", cat:"Birthday", desc:"Portrait-orientation themed loot bags.", price:"₱ 25", img:"Portrait-loot-bags.jpg"},
+  {name:"Landscape Loot Bags", cat:"Birthday", desc:"Landscape-orientation themed loot bags.", price:"₱ 25", img:"Landscape-loot-bags.jpg"},
+  {name:"Party Hats", cat:"Birthday", desc:"Custom printed party hats to match your motif.", price:"₱ 18", img:"Party-hats.jpg"},
+
+  {name:"Pull-Me Invitation Card", cat:"Invitation", desc:"Interactive pull-me style invitation card.", price:"₱ 30", img:"Pull-me-invitation-card.jpg"},
   {name:"Tri-fold Invitation Card", cat:"Invitation", desc:"Classic tri-fold personalized invitation card.", price:"₱ 40", img:"tri-fold-invitation-card.jpg"},
 
-  {name:"Scratch Cards", cat:"Custom Prints", desc:"Custom scratch-off cards for games or reveals.", price:"₱ 8", img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=500&auto=format&fit=crop"},
-  {name:"Pocket Mirror", cat:"Custom Prints", desc:"Compact personalized pocket mirror.", price:"₱ 50", img:"https://images.unsplash.com/photo-1522338140262-f46f5913618a?q=80&w=500&auto=format&fit=crop"},
-  {name:"25mm Button Pins", cat:"Custom Prints", desc:"Custom 25mm button pins.", price:"₱ 20", img:"https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=500&auto=format&fit=crop"},
-  {name:"32mm Button Pins", cat:"Custom Prints", desc:"Custom 32mm button pins.", price:"₱ 25", img:"https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=500&auto=format&fit=crop"},
-  {name:"58mm Button Pins", cat:"Custom Prints", desc:"Custom 58mm button pins.", price:"₱ 30", img:"https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=500&auto=format&fit=crop"},
-  {name:"Badge Pen", cat:"Custom Prints", desc:"Personalized pen with a name badge.", price:"₱ 40", img:"https://images.unsplash.com/photo-1587145717905-8d6fdb2b6d20?q=80&w=500&auto=format&fit=crop"},
-  {name:"Badge Keychain", cat:"Custom Prints", desc:"Personalized badge keychain.", price:"₱ 40", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
-  {name:"Random Stickers", cat:"Custom Prints", desc:"Assorted custom sticker sheet.", price:"₱ 60", img:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=500&auto=format&fit=crop"},
-  {name:"Laminated Menu (A4)", cat:"Custom Prints", desc:"A4-size laminated menu printing.", price:"₱ 60", img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=500&auto=format&fit=crop"},
-  {name:"Claim Stub (A4)", cat:"Custom Prints", desc:"A4-size printed claim stub sheets.", price:"₱ 40", img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=500&auto=format&fit=crop"},
-  {name:"30ml Trapezoid Bottle", cat:"Custom Prints", desc:"Personalized 30ml trapezoid bottle giveaway.", price:"₱ 50", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
-  {name:"2 in 1 Keychain", cat:"Custom Prints", desc:"Personalized 2-in-1 keychain design.", price:"₱ 30", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
-  {name:"Vinyl Decal Stickers 1.5\" x 4\"", cat:"Custom Prints", desc:"Durable vinyl decal stickers, 1.5\" x 4\".", price:"₱ 10", img:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=500&auto=format&fit=crop"},
-  {name:"Personalized Ref Magnet", cat:"Custom Prints", desc:"Custom printed refrigerator magnet.", price:"₱ 45", img:"https://images.unsplash.com/photo-1611080626919-7cf5a9dfa5e6?q=80&w=500&auto=format&fit=crop"},
-  {name:"Backing", cat:"Custom Prints", desc:"Backing card/board for pins and keychains.", price:"₱ 10", img:"https://images.unsplash.com/photo-1587145717905-8d6fdb2b6d20?q=80&w=500&auto=format&fit=crop"},
-  {name:"Transaction Log", cat:"Custom Prints", desc:"Printed transaction log booklet.", price:"₱ 190", img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=500&auto=format&fit=crop"},
-  {name:"Engraved Pencil", cat:"Custom Prints", desc:"Personalized engraved pencils, sold in sets.", price:"₱25 (1pc) · ₱70 (3pcs) · ₱120 (6pcs) · ₱200 (12pcs)", img:"https://images.unsplash.com/photo-1587145717905-8d6fdb2b6d20?q=80&w=500&auto=format&fit=crop"},
+  {name:"Pocket Mirror", cat:"Custom Prints", desc:"Compact personalized pocket mirror.", price:"₱ 50", img:"Pocket-mirror.jpg"},
+  {name:"Big Bobblehead", cat:"Custom Prints", desc:"Compact personalized pocket mirror.", price:"₱ 50", img:"Big-bobblehead.jpg"},
+  {name:"Cake Topper", cat:"Custom Prints", desc:"Compact personalized pocket mirror.", price:"₱ 50", img:"Cake-topper.jpg"},
+  {name:"25mm Button Pins", cat:"Custom Prints", desc:"Custom 25mm button pins.", price:"₱ 20", img:"25mm-button-pins.jpg"},
+  {name:"32mm Button Pins", cat:"Custom Prints", desc:"Custom 32mm button pins.", price:"₱ 25", img:"32mm-button-pins.jpg"},
+  {name:"58mm Button Pins", cat:"Custom Prints", desc:"Custom 58mm button pins.", price:"₱ 30", img:"58mm-button-pins.jpg"},
+  {name:"Badge Keychain", cat:"Custom Prints", desc:"Personalized badge keychain.", price:"₱ 40", img:"Badge-keychain.jpg"},
+  {name:"Random Stickers", cat:"Custom Prints", desc:"Assorted custom sticker sheet.", price:"₱ 60", img:"Random-stickers.jpg"},
+  {name:"Laminated Menu (A4)", cat:"Custom Prints", desc:"A4-size laminated menu printing.", price:"₱ 60", img:"Laminated-menu.jpg"},
+  {name:"Claim Stub (A4)", cat:"Custom Prints", desc:"A4-size printed claim stub sheets.", price:"₱ 40", img:"Claim-stub.jpg"},
+  {name:"30ml Trapezoid Bottle", cat:"Custom Prints", desc:"Personalized 30ml trapezoid bottle giveaway.", price:"₱ 50", img:"Trapezoid-bottle-stickers.jpg"},
+  {name:"2 in 1 Keychain", cat:"Custom Prints", desc:"Personalized 2-in-1 keychain design.", price:"₱ 30", img:"2-in-1-keychain-magnet.jpg"},
+  {name:"Vinyl Decal Stickers 1.5\" x 4\"", cat:"Custom Prints", desc:"Durable vinyl decal stickers, 1.5\" x 4\".", price:"₱ 10", img:"Vinyl-decal-stickers.jpg"},
+  {name:"Backing", cat:"Custom Prints", desc:"Backing card/board for pins and keychains.", price:"₱ 10", img:"Backing-(A6).jpg"},
+  {name:"Transaction Log", cat:"Custom Prints", desc:"Printed transaction log booklet.", price:"₱ 190", img:"transaction-log.jpg"},
+  {name:"Engraved Pencil", cat:"Custom Prints", desc:"Personalized engraved pencils, sold in sets.", price:"₱25 (1pc) · ₱70 (3pcs) · ₱120 (6pcs) · ₱200 (12pcs)", img:"Engraved-pencil.jpg"},
+  {name:"Bubble Head Stickers", cat:"Custom Prints", desc:"Personalized bubble head stickers, sold in sets.", price:"₱45 (Mini) · ₱55 (Small) · ₱60 (Medium) · ₱70 (Large)", img:"Mini-bubble-head-sticker.jpg"},
 ];
 
 const featured = [products[0], products[9], products[16], products[19]];
 
 const categories = [
-  {name:"Christening", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500&auto=format&fit=crop"},
-  {name:"Birthday", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
-  {name:"Invitation", img:"https://images.unsplash.com/photo-1607344645866-009c320c5ab0?q=80&w=500&auto=format&fit=crop"},
-  {name:"Custom Prints", img:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?q=80&w=500&auto=format&fit=crop"},
+  {name:"Christening", img:"Mother-candle.jpg"},
+  {name:"Birthday", img:"Party-hats.jpg"},
+  {name:"Invitation", img:"Pull-me-invitation-card.jpg"},
+  {name:"Custom Prints", img:"Random-stickers.jpg"},
 ];
 
 const portfolioItems = [
-  {tag:"Christening", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500&auto=format&fit=crop", title:"Christening Candle Set"},
-  {tag:"Christening", img:"https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=500&auto=format&fit=crop", title:"Floating Frame w/out Stand"},
-  {tag:"Birthday", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop", title:"Number Cut Out Display"},
-  {tag:"Birthday", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop", title:"Gable Box Party Favors"},
-  {tag:"Invitation", img:"https://images.unsplash.com/photo-1607344645866-009c320c5ab0?q=80&w=500&auto=format&fit=crop", title:"Tri-fold Invitation Card"},
-  {tag:"Custom Prints", img:"https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=500&auto=format&fit=crop", title:"Custom Button Pin Set"},
-  {tag:"Custom Prints", img:"https://images.unsplash.com/photo-1522338140262-f46f5913618a?q=80&w=500&auto=format&fit=crop", title:"Personalized Pocket Mirror"},
-  {tag:"Birthday", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop", title:"Acrylic Keychain Giveaways"},
+  {tag:"Christening", img:"bubble-head-ref-magnet.jpg", title:"Bubble Head Ref Magnet"},
+  {tag:"Christening", img:"Rosary-card.jpg", title:"Rosary Card"},
+  {tag:"Birthday", img:"atm-size-ref-magnet.jpg", title:"ATM size ref magnet"},
+  {tag:"Birthday", img:"Portrait-loot-bags.jpg", title:"Portrait Loot Bags"},
+  {tag:"Invitation", img:"Pull-me-invitation-card.jpg", title:"Pull-Me Invitation Card"},
+  {tag:"Custom Prints", img:"Random-stickers.jpg", title:"Random Stickers"},
+  {tag:"Custom Prints", img:"Logo-stickers.jpg", title:"Logo Stickers"},
+  {tag:"Birthday", img:"Cake-topper.jpg", title:"Cake Topper"},
 ];
 
 const testimonials = [
