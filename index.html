@@ -360,11 +360,12 @@ footer ul li a:hover{color:#fff;}
           <div><strong>0</strong><span>Recycled Designs</span></div>
         </div>
       </div>
-      <div class="card">
+      <div class="hero-art">
         <div class="tape" style="top:-14px;right:40px;transform:rotate(6deg);"></div>
-          <img src="images/Thank-you-card.jpg" alt="Handmade personalized craft items">
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=800&auto=format&fit=crop" alt="Handmade personalized craft items">
         </div>
-        <div class="card">Free layout with every order ✂</div>
+        <div class="hero-badge">Free layout with every order ✂</div>
       </div>
     </div>
   </section>
@@ -756,18 +757,16 @@ footer ul li a:hover{color:#fff;}
 <script>
 /* ---------- Data ---------- */
 const products = [
-  {name:"Bubble Head Ref Magnet", cat:["Christening","Birthday"] desc:"Personalized bubble head souvenir for christening guests.", price:"₱ 25", img:"bubble-head-ref-magnet 2.jpg"},
-  {name:"ATM Size Ref Magnet", cat:"Christening", desc:"ATM-size personalized giveaway.", price:"₱ 25", img:"https://drive.google.com/file/d/1lQWdKrrf1BJbC3nxRd2NxV28l3wyZIJ8/view?usp=drivesdk"},
-  {name:"ATM Size Ref Magnet", cat:"Birthday", desc:"ATM-size personalized giveaway.", price:"₱ 25", img:"https://drive.google.com/file/d/1lQWdKrrf1BJbC3nxRd2NxV28l3wyZIJ8/view?usp=drivesdk"},
-  {name:"Regular Christening Candle", cat:"Christening", desc:"Godparents candle.", price:"₱ 22", img:"https://drive.google.com/file/d/1Ac_M2XdlldZ2NwC_0zOw-6VCXlbMLjWJ/view?usp=drivesdk"},
-  {name:"Candle w/ Drip Holder", cat:"Christening", desc:"Christening candle set with a drip holder.", price:"₱ 22", img:"https://drive.google.com/file/d/1xrEvQTtRRYCodXwNZFCTAmNoa3jFv26h/view?usp=drivesdk"},
-  {name:"Big/Mother Candle", cat:"Christening", desc:"The main mother candle for the christening ceremony.", price:"₱ 180", img:"https://drive.google.com/file/d/1oXfckz0TB8SiMlRCT8MTB7bWZi5UujfY/view?usp=drivesdk"},
-  {name:"30ml Hand Sanitizer", cat:"Christening", desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"https://drive.google.com/file/d/1TQvyBcuf-LqKiCyWh4y6pL_ogPw-xAbS/view?usp=drivesdk"},
-  {name:"Rosary Card", cat:"Christening", desc:"Keepsake rosary card for baptism guests.", price:"₱ 25", img:"https://drive.google.com/file/d/1ZvR3faDeiqgKNLqLB1mRLpcM2BxFD3ru/view?usp=drivesdk"},
-  {name:"Floating Frame w/out Stand", cat:"Christening", desc:"Elegant floating photo frame keepsake, no stand included.", price:"₱ 25", img:"https://drive.google.com/file/d/1GEk6mJzrLfHgYmozyVa7P67HZMnqT-Hg/view?usp=drivesdk"},
+  {name:"Bubble Head", cat:["Christening","Birthday"] desc:"Personalized bubble head souvenir for christening guests.", price:"₱ 25", img:"bubble-head-ref-magnet 2.jpg"},
+  {name:"ATM Size", cat:["Christening","Birthday" desc:"Compact ATM-size personalized giveaway.", price:"₱ 25", img:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=500&auto=format&fit=crop"},
+  {name:"Regular Candle", cat:"Christening", desc:"Hand-poured regular christening candle.", price:"₱ 22", img:"https://images.unsplash.com/photo-1602874801007-bd36c67f9b98?q=80&w=500&auto=format&fit=crop"},
+  {name:"Candle w/ Drip Holder", cat:"Christening", desc:"Christening candle set with a drip holder.", price:"₱ 22", img:"https://images.unsplash.com/photo-1602874801007-bd36c67f9b98?q=80&w=500&auto=format&fit=crop"},
+  {name:"Big/Mother Candle", cat:"Christening", desc:"The main mother candle for the christening ceremony.", price:"₱ 180", img:"https://images.unsplash.com/photo-1602874801007-bd36c67f9b98?q=80&w=500&auto=format&fit=crop"},
+  {name:"Acrylic Keychain", cat:"Christening", desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
+  {name:"30ml Hand Sanitizer", cat:"Christening", desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=500&auto=format&fit=crop"},
+  {name:"Rosary Card", cat:"Christening", desc:"Keepsake rosary card for baptism guests.", price:"₱ 25", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500&auto=format&fit=crop"},
+  {name:"Floating Frame w/out Stand", cat:"Christening", desc:"Elegant floating photo frame keepsake, no stand included.", price:"₱ 25", img:"https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=500&auto=format&fit=crop"},
 
-  {name:"Bubble Head", cat:"Birthday", desc:"Personalized bubble head souvenir for birthday guests.", price:"₱ 25", img:"https://images.unsplash.com/photo-1622560481156-01415f6069b9?q=80&w=500&auto=format&fit=crop"},
-  {name:"ATM Size", cat:"Birthday", desc:"Compact ATM-size personalized giveaway.", price:"₱ 25", img:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=500&auto=format&fit=crop"},
   {name:"Number Cut Out", cat:"Birthday", desc:"Custom number cut-out for milestone birthdays.", price:"₱ 35", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
   {name:"Number Frame", cat:"Birthday", desc:"Decorative number frame photo prop.", price:"₱ 35", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
   {name:"Number Cut Out w/ Drawstring", cat:"Birthday", desc:"Number cut-out with a drawstring bag included.", price:"₱ 40", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop"},
@@ -814,7 +813,7 @@ const categories = [
 ];
 
 const portfolioItems = [
-  {tag:"Christening", img:"images/products/Mother Candle.jpg", title:"Mother Candle"},
+  {tag:"Christening", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=500&auto=format&fit=crop", title:"Christening Candle Set"},
   {tag:"Christening", img:"https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=500&auto=format&fit=crop", title:"Floating Frame w/out Stand"},
   {tag:"Birthday", img:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=500&auto=format&fit=crop", title:"Number Cut Out Display"},
   {tag:"Birthday", img:"https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=500&auto=format&fit=crop", title:"Gable Box Party Favors"},
@@ -965,7 +964,6 @@ document.getElementById('menuToggle').addEventListener('click',()=>document.getE
 /* ---------- Forms: send via email (mailto), Facebook offered as alternative ---------- */
 const BUSINESS_EMAIL = "nisecreations24@gmail.com";
 const FB_URL = "https://www.facebook.com/share/1K5G3meZHD/";
-const CONTACT_NUMBER = "09458920848"
 const formSubjects = {
   orderForm: "New Order Request — Nise Creations",
   customForm: "New Custom Order Inquiry — Nise Creations",
