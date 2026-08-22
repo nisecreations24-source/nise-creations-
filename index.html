@@ -494,23 +494,21 @@ footer ul li a:hover{color:#fff;}
           </div>
           <div class="field full">
           <label>Scan to Pay (GCash / PayMaya)</label>
-          <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
+          <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
       </div>
-          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
-          <p class="form-note">We'll arrange pickup, delivery, or J&T shipping with you via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> once we receive your order — just message us after submitting.</p>
+          <p class="form-note">After submitting, please send your payment screenshot and any reference photo/design via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> — we'll confirm your order there.</p>
           <div class="field full" id="cartTotalField" style="display:none;">
             <label>Order Total</label>
             <input id="cartTotalInput" type="text" readonly style="background:#FBF3EC;font-weight:600;">
           </div>
           <div class="field full"><label>Message / Additional Notes</label><textarea rows="3" placeholder="Color preference, personalization details, or anything else we should know"></textarea></div>
-          <div class="field full"><label>Upload Reference Photo / Design (optional)</label><input type="file"></div>
         </div>
         <div class="field checkbox">
           <input required type="checkbox" id="agreeHome">
           <label for="agreeHome">I understand that confirmed orders require a 50% downpayment and are non-refundable once processed.</label>
         </div>
         <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Order Request</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Order</button>
         <div class="confirm-msg" id="orderConfirm">Thank you! Your order request has been noted — we'll message you shortly with a quotation. 🌸</div>
       </form>
     </div>
@@ -603,7 +601,6 @@ footer ul li a:hover{color:#fff;}
           <div class="field full"><label>Personalization Details</label><textarea rows="2"></textarea></div>
           <div class="field"><label>Event Date</label><input type="date"></div>
           <div class="field"><label>Date Needed</label><input type="date"></div>
-          <div class="field full"><label>Upload Reference Photo / Design</label><input type="file"></div>
           <div class="field full"><label>Additional Instructions</label><textarea rows="2"></textarea></div>
           <div class="field">
             <label>Payment Method</label>
@@ -615,15 +612,14 @@ footer ul li a:hover{color:#fff;}
             <label>Scan to Pay (GCash / PayMaya)</label>
             <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
           </div>
-          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
-          <p class="form-note">We'll arrange pickup, delivery, or J&T shipping with you via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> once we receive your order — just message us after submitting.</p>
+          <p class="form-note">After submitting, please send your payment screenshot and any reference photo/design via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> — we'll confirm your order there.</p>
         </div>
         <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
         <div class="field checkbox">
           <input required type="checkbox" id="agreeCustom">
           <label for="agreeCustom">I agree to the 50% downpayment policy and understand confirmed orders are non-refundable.</label>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Inquiry</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Order</button>
         <div class="confirm-msg" id="customConfirm">Got it — thank you! We'll review your details and send a quotation soon. 🌸</div>
       </form>
     </div>
@@ -803,7 +799,7 @@ const products = [
   {name:"2ml Spray Alcohol", cat:"Birthday", desc:"Personalized 2ml spray alcohol giveaway.", price:"₱ 25", img:"2ml-alcohol-spray.jpg"},
   {name:"Arc Gable Box", cat:"Birthday", desc:"Arc-style gable favor box for party treats.", price:"₱ 25", img:"Arc-gable-box.jpg"},
   {name:"Medium Gable Box", cat:"Birthday", desc:"Medium-sized personalized gable favor box.", price:"₱ 20", img:"Medium-gable-box.jpg"},
-  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"Large-gable-box.jpg"},
+  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"Large-gale-box.jpg"},
   {name:"Portrait Loot Bags", cat:"Birthday", desc:"Portrait-orientation themed loot bags.", price:"₱ 25", img:"Portrait-loot-bags.jpg"},
   {name:"Landscape Loot Bags", cat:"Birthday", desc:"Landscape-orientation themed loot bags.", price:"₱ 25", img:"Landscape-loot-bags.jpg"},
   {name:"Party Hats", cat:"Birthday", desc:"Custom printed party hats to match your motif.", price:"₱ 18", img:"Party-hats.jpg"},
@@ -1008,12 +1004,8 @@ function buildFormData(form, subject){
     const label = fieldEl.querySelector('label');
     const input = fieldEl.querySelector('input, select, textarea');
     if(!label || !input) return;
-    const key = label.textContent.trim();
-    if(input.type === 'file'){
-      if(input.files.length) fd.append(key, input.files[0], input.files[0].name);
-      return;
-    }
     if(input.type === 'checkbox') return;
+    const key = label.textContent.trim();
     const val = input.value.trim();
     if(val) fd.append(key, val);
   });
@@ -1037,7 +1029,7 @@ function buildFormData(form, subject){
     try {
       const res = await fetch(FORMSPREE_URL, { method:'POST', body: fd, headers: { 'Accept':'application/json' } });
       if(res.ok){
-        msg.innerHTML = `Thank you! Your order has been sent — we'll message you shortly with a quotation. Prefer Facebook? <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">Message us there instead</a>. 🌸`;
+        msg.innerHTML = `Thank you! Your order has been sent — please also send your payment screenshot via <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">Facebook Messenger</a> so we can confirm your order. 🌸`;
         form.reset();
       } else {
         throw new Error('Submission failed');
