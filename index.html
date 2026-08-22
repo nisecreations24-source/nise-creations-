@@ -488,6 +488,7 @@ footer ul li a:hover{color:#fff;}
           <label>Scan to Pay (GCash / PayMaya)</label>
           <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
       </div>
+          <div class="field full"><label>Upload Proof of Payment</label><input type="file" accept="image/*"></div>
           <div class="field"><label>Preferred Pickup / Delivery</label>
             <select><option>Pickup</option><option>Delivery (within Danao City)</option><option>Delivery (outside Danao City)</option></select>
           </div>
@@ -498,6 +499,7 @@ footer ul li a:hover{color:#fff;}
           <input required type="checkbox" id="agreeHome">
           <label for="agreeHome">I understand that confirmed orders require a 50% downpayment and are non-refundable once processed.</label>
         </div>
+        <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
         <button type="submit" class="btn btn-primary" style="width:100%;">Submit Order Request</button>
         <div class="confirm-msg" id="orderConfirm">Thank you! Your order request has been noted — we'll message you shortly with a quotation. 🌸</div>
       </form>
@@ -593,8 +595,20 @@ footer ul li a:hover{color:#fff;}
           <div class="field"><label>Date Needed</label><input type="date"></div>
           <div class="field full"><label>Upload Reference Photo / Design</label><input type="file"></div>
           <div class="field full"><label>Additional Instructions</label><textarea rows="2"></textarea></div>
+          <div class="field">
+            <label>Payment Method</label>
+            <select>
+              <option>GCash</option><option>PayMaya</option><option>Maribank</option><option>Bank Transfer</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Scan to Pay (GCash / PayMaya)</label>
+            <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
+          </div>
+          <div class="field full"><label>Upload Proof of Payment</label><input type="file" accept="image/*"></div>
           <div class="field"><label>Preferred Pickup / Delivery</label><select><option>Pickup</option><option>Delivery</option></select></div>
         </div>
+        <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
         <div class="field checkbox">
           <input required type="checkbox" id="agreeCustom">
           <label for="agreeCustom">I agree to the 50% downpayment policy and understand confirmed orders are non-refundable.</label>
@@ -964,8 +978,8 @@ function goTo(page){
 document.querySelectorAll('.navlink').forEach(b=>b.addEventListener('click',()=>goTo(b.dataset.page)));
 document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
 
-/* ---------- Forms: send via email (mailto), Facebook offered as alternative ---------- */
-const BUSINESS_EMAIL = "nisecreations24@gmail.com";
+/* ---------- Forms: send via Formspree (no email app needed), Facebook offered as alternative ---------- */
+const FORMSPREE_URL = "https://formspree.io/f/xaewkwgj";
 const FB_URL = "https://www.facebook.com/share/1K5G3meZHD/";
 const formSubjects = {
   orderForm: "New Order Request — Nise Creations",
@@ -973,38 +987,55 @@ const formSubjects = {
   contactForm: "Website Message — Nise Creations"
 };
 
-function collectFormData(form){
-  const lines = [];
+function buildFormData(form, subject){
+  const fd = new FormData();
+  fd.append('_subject', subject);
   form.querySelectorAll('.field').forEach(fieldEl=>{
     const label = fieldEl.querySelector('label');
     const input = fieldEl.querySelector('input, select, textarea');
     if(!label || !input) return;
+    const key = label.textContent.trim();
     if(input.type === 'file'){
-      if(input.files.length) lines.push(`${label.textContent}: ${input.files[0].name} (please attach this file separately in your email)`);
+      if(input.files.length) fd.append(key, input.files[0], input.files[0].name);
       return;
     }
     if(input.type === 'checkbox') return;
     const val = input.value.trim();
-    if(val) lines.push(`${label.textContent}: ${val}`);
+    if(val) fd.append(key, val);
   });
-  return lines.join('\n');
+  return fd;
 }
 
 ['orderForm','customForm','contactForm'].forEach(id=>{
   const form = document.getElementById(id);
-  form.addEventListener('submit', e=>{
+  form.addEventListener('submit', async e=>{
     e.preventDefault();
-    const body = collectFormData(form);
-    const subject = formSubjects[id];
-    const mailto = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
+    const subject = formSubjects[id];
+    const fd = buildFormData(form, subject);
     const confirmId = id.replace('Form','Confirm');
     const msg = document.getElementById(confirmId);
-    msg.innerHTML = `Your email app should now open with your details filled in — just hit send! Prefer Facebook? <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">Message us there instead</a>. 🌸`;
+
+    try {
+      const res = await fetch(FORMSPREE_URL, { method:'POST', body: fd, headers: { 'Accept':'application/json' } });
+      if(res.ok){
+        msg.innerHTML = `Thank you! Your order has been sent — we'll message you shortly with a quotation. Prefer Facebook? <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">Message us there instead</a>. 🌸`;
+        form.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch(err){
+      msg.innerHTML = `Hmm, something went wrong sending that. Please try again, or <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">message us on Facebook</a> instead. 🌸`;
+    }
+
     msg.classList.add('show');
     setTimeout(()=>msg.classList.remove('show'), 10000);
-    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
   });
 });
 </script>
