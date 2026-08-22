@@ -335,6 +335,10 @@ footer ul li a:hover{color:#fff;}
     </nav>
     <div class="nav-cta">
       <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" title="Message us on Facebook" style="width:38px;height:38px;border-radius:50%;border:1.4px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;">f</a>
+      <button onclick="openCart()" title="View cart" style="position:relative;width:38px;height:38px;border-radius:50%;border:1.4px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;">
+        🛍️
+        <span id="cartBadge" style="display:none;position:absolute;top:-6px;right:-6px;background:var(--rose-deep);color:#fff;font-family:'Space Mono',monospace;font-size:.65rem;min-width:18px;height:18px;border-radius:999px;align-items:center;justify-content:center;padding:0 4px;">0</span>
+      </button>
       <button class="btn btn-primary" onclick="goTo('custom')"><span class="long">Start Your</span> Order</button>
       <button class="menu-toggle" id="menuToggle">☰</button>
     </div>
@@ -433,6 +437,10 @@ footer ul li a:hover{color:#fff;}
       </div>
       <form class="form-card" id="orderForm">
         <div class="form-grid">
+          <div class="field full" id="cartSummaryField" style="display:none;">
+            <label>Your Cart</label>
+            <textarea id="cartSummaryInput" rows="4" readonly style="background:#FBF3EC;"></textarea>
+          </div>
           <div class="field"><label>Full Name</label><input required type="text" placeholder="Juan Dela Cruz"></div>
           <div class="field"><label>Contact Number</label><input required type="tel" placeholder="09XX XXX XXXX"></div>
           <div class="field full"><label>Address</label><input required type="text" placeholder="Street, Barangay, City"></div>
@@ -476,7 +484,7 @@ footer ul li a:hover{color:#fff;}
               <option>Other</option>
             </select>
           </div>
-          <div class="field"><label>Quantity</label><input required type="number" min="1" placeholder="e.g. 50"></div>
+          <div class="field"><label>Quantity</label><input type="number" min="1" placeholder="e.g. 50"></div>
           <div class="field"><label>Delivery Date Needed</label><input type="date"></div>
           <div class="field">
             <label>Payment Method</label>
@@ -486,11 +494,13 @@ footer ul li a:hover{color:#fff;}
           </div>
           <div class="field full">
           <label>Scan to Pay (GCash / PayMaya)</label>
-          <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
+          <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
       </div>
-          <div class="field full"><label>Upload Proof of Payment</label><input type="file" accept="image/*"></div>
-          <div class="field"><label>Preferred Pickup / Delivery</label>
-            <select><option>Pickup</option><option>Delivery (within Danao City)</option><option>Delivery (outside Danao City)</option></select>
+          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
+          <p class="form-note">We'll arrange pickup, delivery, or J&T shipping with you via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> once we receive your order — just message us after submitting.</p>
+          <div class="field full" id="cartTotalField" style="display:none;">
+            <label>Order Total</label>
+            <input id="cartTotalInput" type="text" readonly style="background:#FBF3EC;font-weight:600;">
           </div>
           <div class="field full"><label>Message / Additional Notes</label><textarea rows="3" placeholder="Color preference, personalization details, or anything else we should know"></textarea></div>
           <div class="field full"><label>Upload Reference Photo / Design (optional)</label><input type="file"></div>
@@ -603,10 +613,10 @@ footer ul li a:hover{color:#fff;}
           </div>
           <div class="field full">
             <label>Scan to Pay (GCash / PayMaya)</label>
-            <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
+            <img src="images/payment-qr.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
           </div>
-          <div class="field full"><label>Upload Proof of Payment</label><input type="file" accept="image/*"></div>
-          <div class="field"><label>Preferred Pickup / Delivery</label><select><option>Pickup</option><option>Delivery</option></select></div>
+          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
+          <p class="form-note">We'll arrange pickup, delivery, or J&T shipping with you via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> once we receive your order — just message us after submitting.</p>
         </div>
         <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
         <div class="field checkbox">
@@ -645,7 +655,7 @@ footer ul li a:hover{color:#fff;}
         <p style="color:var(--espresso-soft);">What began with a few personalized stickers grew into a full line of custom keepsakes, event souvenirs, printing services, and hand-poured scented candles. Every order is still designed from scratch, never copied from a template — because we believe your celebration deserves something made just for it.</p>
         <p style="color:var(--espresso-soft);">Today, families across Cebu trust us with their birthdays, baptisms, weddings, and everyday little joys. Free layout assistance comes with every order, because good design shouldn't be out of reach for a special occasion.</p>
       </div>
-      <div class="about-photo"><img src="nise-creations-logo.jpg" alt="Handmade craft workspace"></div>
+      <div class="about-photo"><img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=800&auto=format&fit=crop" alt="Handmade craft workspace"></div>
     </div>
   </section>
 </main>
@@ -793,7 +803,7 @@ const products = [
   {name:"2ml Spray Alcohol", cat:"Birthday", desc:"Personalized 2ml spray alcohol giveaway.", price:"₱ 25", img:"2ml-alcohol-spray.jpg"},
   {name:"Arc Gable Box", cat:"Birthday", desc:"Arc-style gable favor box for party treats.", price:"₱ 25", img:"Arc-gable-box.jpg"},
   {name:"Medium Gable Box", cat:"Birthday", desc:"Medium-sized personalized gable favor box.", price:"₱ 20", img:"Medium-gable-box.jpg"},
-  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"Large-gale-box.jpg"},
+  {name:"Large Gable Box", cat:"Birthday", desc:"Large personalized gable favor box.", price:"₱ 25", img:"Large-gable-box.jpg"},
   {name:"Portrait Loot Bags", cat:"Birthday", desc:"Portrait-orientation themed loot bags.", price:"₱ 25", img:"Portrait-loot-bags.jpg"},
   {name:"Landscape Loot Bags", cat:"Birthday", desc:"Landscape-orientation themed loot bags.", price:"₱ 25", img:"Landscape-loot-bags.jpg"},
   {name:"Party Hats", cat:"Birthday", desc:"Custom printed party hats to match your motif.", price:"₱ 18", img:"Party-hats.jpg"},
@@ -868,6 +878,10 @@ function productCard(p){
       <h4>${p.name}</h4>
       <p>${p.desc}</p>
       <div class="price">${p.price}</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+        <input type="number" min="1" value="1" id="qty-${idx}" style="width:56px;padding:.4em .5em;border-radius:8px;border:1.4px solid var(--line);font-family:'Work Sans',sans-serif;font-size:.85rem;">
+        <button class="btn btn-sage" style="flex:1;padding:.55em 1em;font-size:.8rem;" onclick="addToCart(${idx})">Add to Cart</button>
+      </div>
       <div class="card-ctas">
         <button class="btn btn-outline" onclick="openProductPanel(${idx})">View Details</button>
         <button class="btn btn-primary" onclick="inquireProduct(${idx})">Inquire</button>
@@ -1039,5 +1053,117 @@ function buildFormData(form, subject){
   });
 });
 </script>
+<!-- ================= CART PANEL ================= -->
+<div id="cartOverlay" onclick="closeCart(event)" style="display:none;position:fixed;inset:0;background:rgba(59,42,34,.4);z-index:100;">
+  <div onclick="event.stopPropagation()" style="position:absolute;top:0;right:0;height:100%;width:100%;max-width:420px;background:var(--ivory);box-shadow:-10px 0 30px rgba(0,0,0,.15);display:flex;flex-direction:column;">
+    <div style="padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+      <h3 style="margin:0;">Your Cart</h3>
+      <button onclick="closeCart()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--espresso);">&times;</button>
+    </div>
+    <div id="cartItemsList" style="flex:1;overflow-y:auto;padding:16px 22px;"></div>
+    <div style="padding:18px 22px;border-top:1px solid var(--line);">
+      <button class="btn btn-primary" style="width:100%;" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Cart ---------- */
+function loadCart(){ try{ return JSON.parse(localStorage.getItem('nise_cart')||'[]'); }catch(e){ return []; } }
+function saveCart(cart){ localStorage.setItem('nise_cart', JSON.stringify(cart)); updateCartBadge(); }
+
+function addToCart(idx){
+  const p = products[idx];
+  const qtyInput = document.getElementById('qty-'+idx);
+  const qty = Math.max(1, parseInt(qtyInput ? qtyInput.value : 1) || 1);
+  const cart = loadCart();
+  const existing = cart.find(item => item.name === p.name);
+  if(existing){ existing.qty += qty; } else { cart.push({ name: p.name, price: p.price, qty }); }
+  saveCart(cart);
+  openCart();
+}
+
+function updateCartBadge(){
+  const cart = loadCart();
+  const count = cart.reduce((sum,i)=>sum+i.qty,0);
+  const badge = document.getElementById('cartBadge');
+  if(count > 0){ badge.textContent = count; badge.style.display = 'flex'; }
+  else { badge.style.display = 'none'; }
+}
+
+function renderCartPanel(){
+  const cart = loadCart();
+  const list = document.getElementById('cartItemsList');
+  if(cart.length === 0){
+    list.innerHTML = '<p style="color:var(--espresso-soft);font-size:.9rem;">Your cart is empty. Browse the Shop and tap "Add to Cart" on anything you like.</p>';
+    return;
+  }
+  list.innerHTML = cart.map((item, i) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);">
+      <div style="flex:1;">
+        <div style="font-weight:600;font-size:.92rem;">${item.name}</div>
+        <div style="font-size:.8rem;color:var(--espresso-soft);">${item.price}</div>
+      </div>
+      <input type="number" min="1" value="${item.qty}" style="width:52px;padding:.35em;border-radius:8px;border:1.4px solid var(--line);" onchange="updateCartQty(${i}, this.value)">
+      <button onclick="removeFromCart(${i})" style="background:none;border:none;color:var(--rose-deep);font-size:1.1rem;cursor:pointer;">&times;</button>
+    </div>`).join('');
+}
+
+function updateCartQty(i, val){
+  const cart = loadCart();
+  const qty = Math.max(1, parseInt(val) || 1);
+  cart[i].qty = qty;
+  saveCart(cart);
+  renderCartPanel();
+}
+
+function removeFromCart(i){
+  const cart = loadCart();
+  cart.splice(i,1);
+  saveCart(cart);
+  renderCartPanel();
+}
+
+function openCart(){
+  renderCartPanel();
+  document.getElementById('cartOverlay').style.display = 'block';
+}
+function closeCart(e){
+  document.getElementById('cartOverlay').style.display = 'none';
+}
+
+function parseUnitPrice(priceStr){
+  const m = priceStr.match(/₱\s?(\d+)/);
+  return m ? parseInt(m[1]) : 0;
+}
+
+function updateCartTotals(){
+  const cart = loadCart();
+  if(cart.length === 0){
+    document.getElementById('cartTotalField').style.display = 'none';
+    return;
+  }
+  const subtotal = cart.reduce((sum,i)=> sum + (parseUnitPrice(i.price) * i.qty), 0);
+  document.getElementById('cartTotalInput').value = `₱${subtotal} (item total — delivery/shipping fee, if any, will be arranged separately via Facebook; some items may need a manual quote)`;
+  document.getElementById('cartTotalField').style.display = 'block';
+}
+
+function proceedToCheckout(){
+  const cart = loadCart();
+  if(cart.length === 0){ closeCart(); return; }
+  const summary = cart.map(i => `${i.name} x${i.qty} (${i.price})`).join('\n');
+  document.getElementById('cartSummaryInput').value = summary;
+  document.getElementById('cartSummaryField').style.display = 'block';
+  closeCart();
+  goTo('home');
+  updateCartTotals();
+  setTimeout(()=>{
+    document.getElementById('orderFormSection').scrollIntoView({behavior:'smooth'});
+  }, 150);
+}
+
+updateCartBadge();
+</script>
+
 </body>
 </html>
