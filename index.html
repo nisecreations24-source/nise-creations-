@@ -446,6 +446,7 @@ footer ul li a:hover{color:#fff;}
           <div class="field full"><label>Address</label><input required type="text" placeholder="Street, Barangay, City"></div>
           <div class="field"><label>Celebrant's Name</label><input type="text" placeholder="Optional"></div>
           <div class="field"><label>Celebrant's Age</label><input type="text" placeholder="Optional"></div>
+          <div class="field"><label>Church</label><input type="text" placeholder="Optional"></div>
           <div class="field">
             <label>Event Type</label>
             <select>
@@ -465,7 +466,8 @@ footer ul li a:hover{color:#fff;}
           <label>Scan to Pay (GCash / PayMaya)</label>
           <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
       </div>
-          <p class="form-note">After submitting, please send your payment screenshot and any reference photo/design via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> — we'll confirm your order there.</p>
+          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
+          <div class="field full"><label>Upload Inspo / Reference Design (optional)</label><input type="file" accept="image/*"></div>
           <div class="field full" id="cartTotalField" style="display:none;">
             <label>Order Total</label>
             <input id="cartTotalInput" type="text" readonly style="background:#FBF3EC;font-weight:600;">
@@ -567,6 +569,7 @@ footer ul li a:hover{color:#fff;}
           <div class="field"><label>Quantity</label><input type="number" min="1"></div>
           <div class="field"><label>Preferred Theme</label><input type="text"></div>
           <div class="field"><label>Color Preference</label><input type="text"></div>
+          <div class="field"><label>Church</label><input type="text" placeholder="Optional"></div>
           <div class="field full"><label>Personalization Details</label><textarea rows="2"></textarea></div>
           <div class="field"><label>Event Date</label><input type="date"></div>
           <div class="field"><label>Date Needed</label><input type="date"></div>
@@ -581,7 +584,8 @@ footer ul li a:hover{color:#fff;}
             <label>Scan to Pay (GCash / PayMaya)</label>
             <img src="Mode-of-payment.jpg" alt="Scan to pay QR code" style="max-width:220px;border-radius:12px;border:1.4px solid var(--line);">
           </div>
-          <p class="form-note">After submitting, please send your payment screenshot and any reference photo/design via <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Facebook Messenger</a> — we'll confirm your order there.</p>
+          <div class="field full"><label>Upload Proof of Payment</label><input required type="file" accept="image/*"></div>
+          <div class="field full"><label>Upload Inspo / Reference Design (optional)</label><input type="file" accept="image/*"></div>
         </div>
         <p class="form-note">Prefer to order by chat instead? <a href="https://www.facebook.com/share/1K5G3meZHD/" target="_blank" rel="noopener" style="color:var(--rose-deep);font-weight:600;">Message us on Facebook</a> and skip this form.</p>
         <div class="field checkbox">
@@ -975,6 +979,10 @@ function buildFormData(form, subject){
     if(!label || !input) return;
     if(input.type === 'checkbox') return;
     const key = label.textContent.trim();
+    if(input.type === 'file'){
+      if(input.files.length) fd.append(key, input.files[0], input.files[0].name);
+      return;
+    }
     const val = input.value.trim();
     if(val) fd.append(key, val);
   });
@@ -998,7 +1006,7 @@ function buildFormData(form, subject){
     try {
       const res = await fetch(FORMSPREE_URL, { method:'POST', body: fd, headers: { 'Accept':'application/json' } });
       if(res.ok){
-        msg.innerHTML = `Thank you! Your order has been sent — please also send your payment screenshot via <a href="${FB_URL}" target="_blank" rel="noopener" style="color:#4B5B3A;text-decoration:underline;">Facebook Messenger</a> so we can confirm your order. 🌸`;
+        msg.innerHTML = `Thank you! Your order and payment screenshot have been sent — we'll message you shortly to confirm. 🌸`;
         form.reset();
       } else {
         throw new Error('Submission failed');
