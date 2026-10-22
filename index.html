@@ -778,7 +778,7 @@ const products = [
   {name:"Transaction Log", cat:"Custom Prints", desc:"Printed transaction log booklet.", price:"₱ 190", img:"transaction-log.jpg"},
   {name:"Engraved Pencil", cat:"Custom Prints", desc:"Personalized engraved pencils, sold in sets.", price:"₱25 (1pc) · ₱70 (3pcs) · ₱120 (6pcs) · ₱200 (12pcs)", img:"Engraved-pencil.jpg"},
   {name:"Bubble Head Stickers", cat:"Custom Prints", desc:"Personalized bubble head stickers, sold in sets.", price:"₱45 (Mini) · ₱55 (Small) · ₱60 (Medium) · ₱70 (Large)", img:"Mini-bubble-head-sticker.jpg"},
-  {name:"Christmas Tags", cat:"Christmas", desc:"Personalized Christmas gift tags — choose a design and add a name.", price:"₱500", images:["Classic-noel-tag.jpg","Vintage-holiday-tag.jpg","Christmas-tags-3.jpg"], customizable:true, designs:[{name:"Classic-noel-tag.jpg", price:450},{name:"Vintage-holiday-tag.jpg", price:500}]},
+  {name:"Christmas Tags", cat:"Christmas", desc:"Personalized Christmas gift tags — choose a design and add a name.", price:"₱500", images:["Classic-noel-tag.jpg","Vintage-holiday-tag.jpg"], customizable:true, designs:[{name:"Classic Noel Tag", price:500, img:"Classic-noel-tag.jpg"},{name:"Vintage Holiday Tag", price:490, img:"Vintage-holiday-tag.jpg"}]},
   {name:"Christmas Greeting Cards", cat:"Christmas", desc:"Personalized Christmas greeting cards — choose a design and add a name.", price:"Message for pricing", images:["Christmas-greeting-cards-1.jpg","Christmas-greeting-cards-2.jpg","Christmas-greeting-cards-3.jpg"], customizable:true, designs:[]},
 ];
 
@@ -789,7 +789,7 @@ const categories = [
   {name:"Birthday", img:"Party-hats.jpg"},
   {name:"Invitation", img:"Pull-me-invitation-card.jpg"},
   {name:"Custom Prints", img:"Random-stickers.jpg"},
-  {name:"Christmas", img:"Cheerful-christmas-whimsy.jpg"},
+  {name:"Christmas", img:"Christmas-tags.jpg"},
 ];
 
 const portfolioItems = [
@@ -837,14 +837,15 @@ function productCard(p){
       <div style="margin-top:8px;">
         ${hasDesignPricing ? `
         <label style="display:block;font-size:.75rem;font-weight:600;color:var(--espresso-soft);margin-bottom:4px;">Design</label>
-        <select id="design-${idx}" onchange="updateDesignPrice(${idx})" style="width:100%;padding:.5em;border-radius:8px;border:1.4px solid var(--line);font-family:'Work Sans',sans-serif;font-size:.85rem;margin-bottom:8px;">
-          ${p.designs.map(d => `<option value="${d.price}">${d.name} — ₱${d.price}</option>`).join('')}
+        <select id="design-${idx}" onchange="updateDesignSelection(${idx})" style="width:100%;padding:.5em;border-radius:8px;border:1.4px solid var(--line);font-family:'Work Sans',sans-serif;font-size:.85rem;margin-bottom:8px;">
+          ${p.designs.map((d,i) => `<option value="${i}">${d.name} — ₱${d.price}</option>`).join('')}
         </select>` : ''}
         <label style="display:block;font-size:.75rem;font-weight:600;color:var(--espresso-soft);margin-bottom:4px;">Name on Card</label>
         <input type="text" id="nameoncard-${idx}" placeholder="e.g. The Santos Family" style="width:100%;padding:.5em;border-radius:8px;border:1.4px solid var(--line);font-family:'Work Sans',sans-serif;font-size:.85rem;">
       </div>` : '';
+  const initialImg = (hasDesignPricing && p.designs[0].img) ? p.designs[0].img : mainImage(p);
   return `<div class="card">
-    <div class="thumb"><span class="category-pill">${p.cat}</span><img src="${mainImage(p)}" alt="${p.name}"></div>
+    <div class="thumb"><span class="category-pill">${p.cat}</span><img id="thumb-${idx}" src="${initialImg}" alt="${p.name}"></div>
     <div class="body">
       <h4>${p.name}</h4>
       <p>${p.desc}</p>
@@ -862,11 +863,17 @@ function productCard(p){
   </div>`;
 }
 
-function updateDesignPrice(idx){
+function updateDesignSelection(idx){
   const select = document.getElementById('design-'+idx);
+  if(!select) return;
+  const p = products[idx];
+  const design = p.designs[parseInt(select.value)];
   const priceEl = document.getElementById('price-'+idx);
-  if(select && priceEl) priceEl.textContent = `₱${select.value}`;
+  if(priceEl) priceEl.textContent = `₱${design.price}`;
+  const thumbEl = document.getElementById('thumb-'+idx);
+  if(thumbEl && design.img) thumbEl.src = design.img;
 }
+
 document.getElementById('featuredGrid').innerHTML = featured.map(productCard).join('');
 document.getElementById('priceTable').innerHTML = '<tr><th>Product</th><th>Category</th><th>Price</th></tr>' +
   products.map(p=>{
@@ -1081,8 +1088,7 @@ function addToCart(idx){
     let designLabel = '';
     if(hasDesignPricing){
       const designSel = document.getElementById('design-'+idx);
-      const selectedPrice = designSel ? parseInt(designSel.value) : p.designs[0].price;
-      const matched = p.designs.find(d => d.price === selectedPrice) || p.designs[0];
+      const matched = designSel ? p.designs[parseInt(designSel.value)] : p.designs[0];
       designLabel = matched.name;
       itemPrice = `₱${matched.price}`;
     }
