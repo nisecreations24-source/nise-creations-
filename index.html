@@ -445,7 +445,7 @@ footer ul li a:hover{color:#fff;}
           <div class="field"><label>Contact Number</label><input required type="tel" placeholder="09XX XXX XXXX"></div>
           <div class="field full"><label>Address</label><input required type="text" placeholder="Street, Barangay, City"></div>
           <div class="field"><label>Celebrant's Name</label><input type="text" placeholder="Optional"></div>
-          <div class="field"><label>Celebrant's Age</label><input type="text" placeholder="Optional"></div>
+          <div class="field"><label>Celebrant's Age</label><input type="text" placeholder="Optional"></div>          
           <div class="field"><label>Church</label><input type="text" placeholder="Optional"></div>
           <div class="field">
             <label>Event Type</label>
@@ -735,14 +735,15 @@ footer ul li a:hover{color:#fff;}
 const products = [
   {name:"Bubble Head", cat:["Christening","Birthday"], desc:"Personalized bubble head souvenir for christening guests.", price:"₱ 25", img:"bubble-head-ref-magnet 2.jpg"},
   {name:"ATM Size", cat:["Christening","Birthday"], desc:"Compact ATM-size personalized giveaway.", price:"₱ 25", img:"atm-size-ref-magnet.jpg"},
+  {name:"Personalized Mug", cat:["Christening","Birthday"], desc:"comes with a box, ribbon and sticker.", price:"₱ 100", img:"mug-1.jpg"}, customizable:true, designs:[{name:"Personalized Mug Retail price", price:120, img:"mug-1.jpg"}, {name:"Personalized Mug more than 10pcs", price:100, img:"mug-2.jpg"}]}
   {name:"Instax Mini Inspired Ref Magnet", cat:"Christening", desc:"Minimalist ref magnet", price:"₱ 25", img:"Instax-mini-inspired-ref-magnet.jpg"},
   {name:"Godparents Candle", cat:"Christening", desc:"Hand-poured regular christening candle.", price:"₱ 25", img:"regular-candle.png"},
   {name:"Candle w/ Drip Holder", cat:"Christening", desc:"Christening candle set with a drip holder.", price:"₱ 20", img:"Candle-with-drip-holder.jpg"},
   {name:"Big/Mother Candle", cat:"Christening", desc:"The main mother candle for the christening ceremony.", price:"₱ 180", img:"Mother-candle.jpg"},
-  {name:"Acrylic Keychain", cat:["Christening","Birthday"], desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"Acrylic-keychain.jpg"},
+  {name:"Acrylic Keychain", cat:["Christening","Birthday"], desc:"Personalized acrylic keychain souvenir.", price:"₱ 20", img:"Acrylic-keychain.jpg","acrylic-keychain-1.jpg"},
   {name:"30ml Hand Sanitizer", cat:["Christening","Birthday"], desc:"Personalized 30ml hand sanitizer giveaway.", price:"₱ 45", img:"30ml-hand-sanitizer.jpg"},
   {name:"Rosary Card", cat:"Christening", desc:"Keepsake rosary card for baptism guests.", price:"₱ 25", img:"Rosary-card.jpg"},
-  {name:"Floating Frame w/out stand", cat:"Christening", desc:"Floating frame in a box", price:"₱ 35", img:"Floating-fram-without-stand.jpg"},  {name:"Instax Mini Inspired Ref Magnet", cat:"Christening", desc:"Compact personalized pocket mirror.", price:"₱ 25", img:"Instax-mini-inspired-ref-magnet.jpg"},
+  {name:"Floating Frame w/out stand", cat:"Christening", desc:"Floating frame in a box", price:"₱ 35", img:"Floating-fram-without-stand.jpg","floating-frame.jpg"},  {name:"Instax Mini Inspired Ref Magnet", cat:"Christening", desc:"Compact personalized pocket mirror.", price:"₱ 25", img:"Instax-mini-inspired-ref-magnet.jpg"},
   {name:"Christening Candle Sticker", cat:"Christening", desc:"Sticker for regular christening candle.", price:"₱ 10", img:"sticker-for-candle-stickers.png"},
 
   {name:"Number Cut Out", cat:"Birthday", desc:"Custom number cut-out for milestone birthdays.", price:"₱ 35", img:"Number-cutout-ref-magnet.jpg"},
@@ -790,7 +791,7 @@ const categories = [
   {name:"Birthday", img:"Party-hats.jpg"},
   {name:"Invitation", img:"Pull-me-invitation-card.jpg"},
   {name:"Custom Prints", img:"Random-stickers.jpg"},
-  {name:"Christmas", img:"Christmas-tags.jpg"},
+  {name:"Christmas", img:"Christmas-collection-1.png"},
 ];
 
 const portfolioItems = [
